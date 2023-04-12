@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
     
     const [title, setTitle] = useState("");
     const [alias, setAlias] = useState("");
     const [snip, setSnip] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -15,8 +17,13 @@ function Home() {
                 alias,
                 snip
             });
-            // navigate("/");
-            console.log(response.data.message);
+            if(response.data.id){
+                navigate("/snips/" + response.data.id);
+                console.log(response.data.message);
+            }
+            else{
+                alert("Alias already taken");
+            }            
         } catch(err) {
             console.log(err);
         }
@@ -25,19 +32,23 @@ function Home() {
     return (
       <div className="home">
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}/>
+            <div className="form-head">
+                <input type="text" placeholder="Title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}/>
 
-            <input type="text" placeholder="Alias"
-            value={alias}
-            onChange={(event) => setAlias(event.target.value)}/>
+                <input type="text" placeholder="Alias (Optional)"
+                value={alias}
+                onChange={(event) => setAlias(event.target.value)}/>
 
-            <button type="submit">Create Snip</button><br></br>
+                <button type="submit">Create Snip</button><br></br>
+            </div>
 
-            <textarea id="sniptext"
-            value={snip}
-            onChange={(event) => setSnip(event.target.value)}/>
+            <div className="area-container">
+                <textarea id="sniptext"
+                value={snip}
+                onChange={(event) => setSnip(event.target.value)}/>
+            </div>
         </form>
       </div>
     );

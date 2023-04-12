@@ -16,8 +16,18 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const newSnip = new SnipModel(req.body);
-    await newSnip.save();
-    res.json({message: "Snip added successfully"});
+    if(!req.body.alias){
+        
+    }
+    try{
+        const savedSnip = await newSnip.save();
+        console.log(savedSnip);
+        return res.json({message: "Snip added successfully", id: savedSnip.alias});
+    }
+    catch(err){
+        console.log(err);
+    }
+    res.json({message: "Something went wrong"});
 });
 
 // router.put("/", async (req, res) => {
