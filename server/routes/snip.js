@@ -1,3 +1,4 @@
+const generateString = require("../utils/randomString.js");
 const express = require("express");
 
 const SnipModel = require("../models/Snip.js");
@@ -15,16 +16,20 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const newSnip = new SnipModel(req.body);
     if(!req.body.alias){
-        
+        const alias = generateString();
+        req.body.alias = alias;
     }
+    const newSnip = new SnipModel(req.body);
     try{
         const savedSnip = await newSnip.save();
         console.log(savedSnip);
         return res.json({message: "Snip added successfully", id: savedSnip.alias});
     }
     catch(err){
+        if(err.code === 11000){
+            return res.json({message: "Alias already taken"});
+        }
         console.log(err);
     }
     res.json({message: "Something went wrong"});

@@ -18,11 +18,11 @@ function Home() {
                 snip
             });
             if(response.data.id){
-                navigate("/snips/" + response.data.id);
+                navigate("/" + response.data.id);
                 console.log(response.data.message);
             }
             else{
-                alert("Alias already taken");
+                alert(response.data.message);
             }            
         } catch(err) {
             console.log(err);
@@ -35,7 +35,7 @@ function Home() {
             <div className="form-head">
                 <input type="text" placeholder="Title"
                 value={title}
-                onChange={(event) => setTitle(event.target.value)}/>
+                onChange={(event) => setTitle(event.target.value)} required/>
 
                 <input type="text" placeholder="Alias (Optional)"
                 value={alias}
@@ -47,7 +47,7 @@ function Home() {
             <div className="area-container">
                 <textarea id="sniptext"
                 value={snip}
-                onChange={(event) => setSnip(event.target.value)}/>
+                onChange={(event) => setSnip(event.target.value)} required/>
             </div>
         </form>
       </div>
