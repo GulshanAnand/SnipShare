@@ -14,7 +14,8 @@ app.get("/", (req, res) => {
 
 app.use("/snip", snipRouter);
 
-mongoose.connect("mongodb://127.0.0.1:27017/snipDB").then(() => console.log('Connected Successfully')); // use environment variable (env) for url
+mongoose.connect("mongodb://127.0.0.1:27017/snipDB")
+    .then(() => console.log('Connected Successfully')); // use environment variable (env) for url
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
