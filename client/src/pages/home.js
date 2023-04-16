@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useGetUserID } from "../hooks/useGetUserID";
 
 function Home() {
     
@@ -8,6 +9,7 @@ function Home() {
     const [alias, setAlias] = useState("");
     const [snip, setSnip] = useState("");
     const navigate = useNavigate();
+    const userid = useGetUserID();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -15,7 +17,8 @@ function Home() {
             const response = await axios.post("http://localhost:3001/snip", {
                 title,
                 alias,
-                snip
+                snip,
+                userid
             });
             if(response.data.id){
                 navigate("/" + response.data.id);

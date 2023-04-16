@@ -13,7 +13,8 @@ const SnipSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
-    }
+    },
+    userid: { type: mongoose.Schema.Types.ObjectId, ref: "users" }
 });
 
 const SnipModel = mongoose.model("snips", SnipSchema);

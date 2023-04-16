@@ -13,8 +13,7 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    snips: [{ type: mongoose.Schema.Types.ObjectId, ref: "snips" }]
+    }
 });
 
 const UserModel = mongoose.model("users", UserSchema);

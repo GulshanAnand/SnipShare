@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useGetUserID } from "../hooks/useGetUserID";
 
 function SnipList() {
     
     const [snipList, setSnipList] = useState([]);
     const navigate = useNavigate();
+    const userid = useGetUserID();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/snip")
+        axios.get("http://localhost:3001/snip/user/" + userid,)
         .then(response => {
             setSnipList(response.data);
         })
         .catch(error => {
             console.error(error);
         });
-    }, []);
+    });
 
     const handleClick = async (item) => {
         navigate("/" + item.alias);

@@ -5,8 +5,9 @@ const SnipModel = require("../models/Snip.js");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-    const snipList = await SnipModel.find({});
+router.get("/user/:userid", async (req, res) => {
+    const userid = req.params.userid;
+    const snipList = await SnipModel.find({userid});
     res.json(snipList);
 });
 
