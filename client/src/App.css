@@ -152,3 +152,43 @@ button {
   color: rgb(18, 115, 189);
   font-size: 14px;
 }
+
+.snip-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.snip-item {
+  width: 70vw;
+  margin: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.item-textarea {
+  width: 65vw;
+  height: 100px;
+  margin-bottom: 20px;
+  border: solid;
+  border-width: 2 px;
+  border-color: #cdcdd0;
+}
+
+.horizontal-div {
+  display: inline-flex;
+  align-items: center;
+}
+
+.snip-item-div {
+  position: absolute;
+  right: 17vw;
+  margin-left: 50px;
+}
+
+.snip-item-button {
+  background-color: rgb(186, 186, 186);
+  border-color:  rgb(186, 186, 186);
+}

@@ -18,7 +18,6 @@ router.post("/register", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = new UserModel({name, email, password: hashedPassword});
     try{
         await newUser.save();
@@ -27,8 +26,6 @@ router.post("/register", async (req, res) => {
     catch(err){
         return res.json({message: "Something went wrong"});
     }
-
-    
 });
 
 router.post("/login", async (req, res) => {

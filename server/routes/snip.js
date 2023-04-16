@@ -2,10 +2,11 @@ const generateString = require("../utils/randomString.js");
 const express = require("express");
 
 const SnipModel = require("../models/Snip.js");
+const verifyToken = require("../middleware/auth.js");
 
 const router = express.Router();
 
-router.get("/user/:userid", async (req, res) => {
+router.get("/user/:userid", verifyToken, async (req, res) => {
     const userid = req.params.userid;
     const snipList = await SnipModel.find({userid});
     res.json(snipList);
