@@ -1,3 +1,7 @@
+.App {
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -56,6 +60,7 @@ body {
 #mainHead {
   text-align: left;
   margin: 50px;
+  cursor: pointer;
 }
 
 a {
@@ -107,4 +112,43 @@ button {
 .form-head {
   width: 90%;
   margin: 5px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin: 20px;
+  width: 400px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  padding: 8px;
+  border-radius: 5px;
+  border-style: solid;
+  font-size: 16px;
+  width: 90%;
+}
+
+.auth {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
+
+.link2 {
+  color: rgb(18, 115, 189);
+  font-size: 14px;
 }

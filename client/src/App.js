@@ -4,6 +4,8 @@ import Home from "./pages/home";
 import Snip from "./pages/snip";
 import { Navbar } from "./components/navbar";
 import SnipList from './pages/sniplist';
+import { Login } from './pages/login';
+import { Register } from './pages/register';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/all" element={<SnipList />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
           <Route path="/:id" element={<Snip />}/>
         </Routes>
       </Router>

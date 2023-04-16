@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const snip = await SnipModel.findOne({alias:req.params.id});
+    const snip = await SnipModel.findOne({alias: req.params.id});
     res.json(snip);
 });
 

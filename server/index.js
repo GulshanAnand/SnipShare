@@ -7,12 +7,14 @@ app.use(cors());
 app.use(express.json());
 
 const snipRouter = require("./routes/snip.js");
+const userRouter = require("./routes/user.js");
 
 app.get("/", (req, res) => {
     res.send("hello world");
 });
 
 app.use("/snip", snipRouter);
+app.use("/auth", userRouter);
 
 mongoose.connect("mongodb://127.0.0.1:27017/snipDB")
     .then(() => console.log('Connected Successfully')); // use environment variable (env) for url
