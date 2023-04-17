@@ -14,15 +14,36 @@ function SnipList() {
     useEffect(() => {
         axios.get("http://localhost:3001/snip/user/" + userid, {headers: {authorization: cookies.access_token}})
         .then(response => {
-            setSnipList(response.data); 
+            setSnipList(response.data);
+            console.log(response.data);
         })
         .catch(error => {
             console.error(error);
         });
-    });
+    }, [cookies, userid]);
 
     const handleClick = async (item) => {
         navigate("/" + item.alias);
+    };
+
+    const editOnClick = async (item) => {
+        navigate("/edit/" + item.alias);
+    };
+
+    const deleteOnClick = async (item) => {
+        const snipID = item._id;
+        try {
+            // const response = await axios.delete("http://localhost:3001/snip/", {
+            //     snipID
+            // }, {headers: {authorization: cookies.access_token}});
+            // console.log(response.data);
+            const response = await axios.delete("http://localhost:3001/snip", {
+                snipID
+            }, {headers: {authorization: cookies.access_token}});
+            alert(response.message);
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -35,7 +56,8 @@ function SnipList() {
                             <h3>{item.title}</h3>
                             <div className="snip-item-div">
                                 <button className="snip-item-button" onClick={() => handleClick(item)}>View</button>
-                                <button className="snip-item-button">Edit</button>
+                                <button className="snip-item-button" onClick={() => editOnClick(item)}>Edit</button>
+                                <button className="snip-item-button" onClick={() => deleteOnClick(item)}>Delete</button>
                             </div>
                         </div>
                         <div>

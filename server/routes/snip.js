@@ -37,12 +37,38 @@ router.post("/", async (req, res) => {
     res.json({message: "Something went wrong"});
 });
 
-// router.put("/", async (req, res) => {
-//     const product = await ProductModel.findById(req.body.productID);
-//     const user = await UserModel.findById(req.body.userID);
-//     user.cart.push(product);
-//     await user.save();
-//     res.json({Cart: user.cart});
-// });
+router.patch("/", verifyToken, async (req, res) => {
+    const snipID = req.body.snipID;
+    const title = req.body.title;
+    const snip = req.body.snip;
+    const alias = req.body.alias;
+    try{
+        const updateStatus = await SnipModel.updateOne({_id: snipID}, {$set: {title, snip, alias}});
+        if(updateStatus.acknowledged){
+            return res.json({message: "Snip updated successfully", id: alias});
+        }
+        return res.json({message: "Something went wrong"});
+    }
+    catch(err){
+        if(err.code === 11000){
+            return res.json({message: "Alias already taken"});
+        }
+        return res.json({message: "Something went wrong"});
+    }
+});
+
+router.delete("/", verifyToken, async (req, res) => {
+    const snipID = req.body.snipID;
+    try{
+        const deleteStatus = await SnipModel.deleteOne({_id: snipID});
+        if(deleteStatus.deletedCount > 0){
+            return res.json({message: "Snip deleted"});
+        }
+        return res.json({message: "Something went wrong"});
+    }
+    catch(err){
+        return res.json({message: "Something went wrong"});
+    }
+});
 
 module.exports = router;

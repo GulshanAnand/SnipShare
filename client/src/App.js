@@ -6,6 +6,7 @@ import { Navbar } from "./components/navbar";
 import SnipList from './pages/sniplist';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
+import Editsnip from './pages/editsnip';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/all" element={<SnipList />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/edit/:id" element={<Editsnip />}/>
           <Route path="/:id" element={<Snip />}/>
         </Routes>
       </Router>

@@ -7,7 +7,8 @@ function Snip() {
     
     const [title, setTitle] = useState("");
     const [snip, setSnip] = useState("");
-    const [copyButtonText, setCopyButtonText] = useState("Copy");
+    const [copyButtonText, setCopyButtonText] = useState("Copy URL");
+    const [snipCopyButtonText, setSnipCopyButtonText] = useState("Copy Text");
     const { id } = useParams();
 
     useEffect(() => {
@@ -25,9 +26,14 @@ function Snip() {
         fetchData();
       });
 
-      const handleCopy = () => {
+      const handleUrlCopy = () => {
         navigator.clipboard.writeText("localhost:3000/" + id);
-        setCopyButtonText("Copied!");
+        setCopyButtonText("URL Copied!");
+      };
+
+      const handleSnipCopy = () => {
+        navigator.clipboard.writeText(snip);
+        setSnipCopyButtonText("Text Copied!");
       };
 
     return (
@@ -35,7 +41,8 @@ function Snip() {
         <div className="form-head">            
             <input type="text" value={title} readOnly/>
             <input type="text" value={"localhost:3000/" + id} readOnly/>
-            <button onClick={handleCopy}>{copyButtonText}</button>
+            <button onClick={handleUrlCopy}>{copyButtonText}</button>
+            <button onClick={handleSnipCopy}>{snipCopyButtonText}</button>
         </div>
         <textarea id="sniptext"
         value={snip}
