@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "../config/config";
 import { useNavigate } from "react-router-dom";
 import { useGetUserID } from "../hooks/useGetUserID";
 
@@ -14,7 +14,7 @@ function Home() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/snip", {
+            const response = await axios.post("/snip", {
                 title,
                 alias,
                 snip,

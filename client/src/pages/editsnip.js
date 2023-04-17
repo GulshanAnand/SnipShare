@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import axios from "axios";
+import axios from "../config/config";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -16,7 +16,7 @@ function Editsnip() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3001/snip/" + id);
+                const response = await axios.get("/snip/" + id);
                 setTitle(response.data.title);
                 setSnip(response.data.snip);
                 setAlias(response.data.alias);
@@ -32,7 +32,7 @@ function Editsnip() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.patch("http://localhost:3001/snip", {
+            const response = await axios.patch("/snip", {
                 snipID,
                 title,
                 alias,

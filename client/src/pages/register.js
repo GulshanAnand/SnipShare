@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../config/config";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -30,7 +30,7 @@ const RegisterPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("http://localhost:3001/auth/register", {
+            const response = await axios.post("/auth/register", {
                 name,
                 email,
                 password,

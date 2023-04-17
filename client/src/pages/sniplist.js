@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../config/config";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useGetUserID } from "../hooks/useGetUserID";
@@ -13,7 +13,7 @@ function SnipList() {
     const [toggleRefresh, setToggleRefresh] = useState(0);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/snip/user/" + userid, {headers: {authorization: cookies.access_token}})
+        axios.get("/snip/user/" + userid, {headers: {authorization: cookies.access_token}})
         .then(response => {
             setSnipList(response.data);
             console.log(response.data);
@@ -34,8 +34,8 @@ function SnipList() {
     const deleteOnClick = async (item) => {
         const snipID = item._id;
         try {
-            const response = await axios.delete("http://localhost:3001/snip/" + snipID,
-            {headers: {authorization: cookies.access_token}});
+            const response = await axios.delete("/snip/" + snipID,
+                {headers: {authorization: cookies.access_token}});
             // alert(response.data.message);
             console.log(response.data);
             setToggleRefresh(!toggleRefresh);
