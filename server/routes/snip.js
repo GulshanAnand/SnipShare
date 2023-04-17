@@ -57,8 +57,8 @@ router.patch("/", verifyToken, async (req, res) => {
     }
 });
 
-router.delete("/", verifyToken, async (req, res) => {
-    const snipID = req.body.snipID;
+router.delete("/:snipID", verifyToken, async (req, res) => {
+    const snipID = req.params.snipID;
     try{
         const deleteStatus = await SnipModel.deleteOne({_id: snipID});
         if(deleteStatus.deletedCount > 0){

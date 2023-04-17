@@ -10,6 +10,7 @@ function SnipList() {
     const navigate = useNavigate();
     const [cookies] = useCookies(["access_token"]);
     const userid = useGetUserID();
+    const [toggleRefresh, setToggleRefresh] = useState(0);
 
     useEffect(() => {
         axios.get("http://localhost:3001/snip/user/" + userid, {headers: {authorization: cookies.access_token}})
@@ -20,7 +21,7 @@ function SnipList() {
         .catch(error => {
             console.error(error);
         });
-    }, [cookies, userid]);
+    }, [cookies, userid, toggleRefresh]);
 
     const handleClick = async (item) => {
         navigate("/" + item.alias);
@@ -33,14 +34,11 @@ function SnipList() {
     const deleteOnClick = async (item) => {
         const snipID = item._id;
         try {
-            // const response = await axios.delete("http://localhost:3001/snip/", {
-            //     snipID
-            // }, {headers: {authorization: cookies.access_token}});
-            // console.log(response.data);
-            const response = await axios.delete("http://localhost:3001/snip", {
-                snipID
-            }, {headers: {authorization: cookies.access_token}});
-            alert(response.message);
+            const response = await axios.delete("http://localhost:3001/snip/" + snipID,
+            {headers: {authorization: cookies.access_token}});
+            // alert(response.data.message);
+            console.log(response.data);
+            setToggleRefresh(!toggleRefresh);
         } catch(err) {
             console.log(err);
         }
