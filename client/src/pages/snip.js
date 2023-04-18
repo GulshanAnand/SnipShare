@@ -17,6 +17,9 @@ function Snip() {
         const fetchData = async () => {
             try {
                 const response = await axios.get("/snip/" + id);
+                if(!response.data){
+                  alert("Requested page does not exist");
+                }
                 setTitle(response.data.title);
                 setSnip(response.data.snip);
                 console.log(response.data);
