@@ -38,6 +38,10 @@ router.post("/", async (req, res) => {
 });
 
 router.patch("/", verifyToken, async (req, res) => {
+    if(!req.body.alias){
+        const alias = generateString();
+        req.body.alias = alias;
+    }
     const snipID = req.body.snipID;
     const title = req.body.title;
     const snip = req.body.snip;

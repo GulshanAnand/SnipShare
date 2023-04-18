@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
         return res.json({message: "Invalid credentials"});
     }
     
-    const token = jwt.sign({id: user._id}, "mysecretkey"); // use environment variable (env) for secret
+    const token = jwt.sign({id: user._id}, process.env.SECRET_KEY); // use environment variable (env) for secret
     res.json({token, userID: user._id});
 
 });

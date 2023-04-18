@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "../config/config";
-import { baseURL } from "../config/config";
 
 function Snip() {
-    
+    // const hostURL = "http://localhost:3000";
+    const hostURL = window.location.host;
     const [title, setTitle] = useState("");
     const [snip, setSnip] = useState("");
     const [copyButtonText, setCopyButtonText] = useState("Copy URL");
@@ -28,7 +28,7 @@ function Snip() {
       });
 
       const handleUrlCopy = () => {
-        navigator.clipboard.writeText(baseURL + "/" + id);
+        navigator.clipboard.writeText(hostURL + "/" + id);
         setCopyButtonText("URL Copied!");
       };
 
@@ -41,7 +41,7 @@ function Snip() {
       <div className="home">
         <div className="form-head">            
             <input type="text" value={title} readOnly/>
-            <input type="text" value={baseURL + "/" + id} readOnly/>
+            <input type="text" value={hostURL + "/" + id} readOnly/>
             <button onClick={handleUrlCopy}>{copyButtonText}</button>
             <button onClick={handleSnipCopy}>{snipCopyButtonText}</button>
         </div>
