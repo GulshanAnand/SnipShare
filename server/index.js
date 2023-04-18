@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 const snipRouter = require("./routes/snip.js");
 const userRouter = require("./routes/user.js");
@@ -22,7 +22,7 @@ app.use("/snip", snipRouter);
 app.use("/auth", userRouter);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 mongoose.connect(process.env.MONGO_URL + "/snipDB")
