@@ -6,7 +6,7 @@ import { Navbar } from "./components/navbar";
 import SnipList from './pages/sniplist';
 import { Login } from './pages/login';
 import { Register } from './pages/register';
-import Editsnip from './pages/editsnip';
+import Editsnip from './pages/editsnip';  
 
 function App() {
   return (
