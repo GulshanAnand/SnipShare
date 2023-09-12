@@ -38,7 +38,7 @@
 }
 
 body {
-  margin: 0
+  margin: 0;
 }
 
 .home {
@@ -119,12 +119,13 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 2%;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  margin: 20px;
-  width: 400px;
+  margin-top: 20px;
+  width: 26%;
+  margin-left: 35%;
 }
 
 .form-group {
@@ -170,7 +171,7 @@ button {
 
 .item-textarea {
   width: 65vw;
-  height: 100px;
+  height: 320px;
   margin-bottom: 20px;
   border: solid;
   border-width: 2 px;
